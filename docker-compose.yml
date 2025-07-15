@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   postgres:
@@ -22,6 +22,8 @@ services:
     volumes:
       - ./spark:/opt/spark-apps
       - ./data:/data
+    command: >
+      bash -c "export IVY_HOME=/tmp/.ivy2 && mkdir -p /tmp/.ivy2 && spark-submit /opt/spark-apps/process_data.py"
 
   jupyter:
     image: jupyter/pyspark-notebook
